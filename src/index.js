@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { h } = require('vue');
 const SMTP_CONFIG = require('../config/smtp');
 
 const transporter = nodemailer.createTransport({
@@ -20,7 +21,18 @@ async function run(){
         text: 'Teste 03 com nodemailer e .env',
         subject: 'Nodemailer',
         from: 'Timóteo Vieira <timoteo.vieira@linkcariri.com>',
-        to: ['timoteo7charles777@gmail.com']
+        to: ['timoteo7charles777@gmail.com'],
+        html: `
+        <html>
+            <body>
+                <h1>Titulo do email</h1>
+
+                <p>
+                    Este é um e-mail teste utilizando o Nodejs com a biblioteca Nodemailer
+                </p>
+            </body>
+        </html>
+        `,
     });
     console.log(mailSent)
 }
